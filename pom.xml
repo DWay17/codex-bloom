@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.github.dway17</groupId>
+	<artifactId>codex-bloom</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>codex-bloom</name>
+	<url>https://github.com/DWay17/codex-bloom</url>
+
+	<organization>
+		<url>https://www.netzwerk-universitaetsmedizin.de/projekte/codex</url>
+		<name>NUM CODEX | COVID-19 Data Exchange Platform</name>
+	</organization>
+
+	<scm>
+		<url>https://github.com/dway17/codex-bloom/tree/main</url>
+		<connection>scm:git:git@github.com:dway17/codex-bloom.git</connection>
+		<developerConnection>scm:git:ssh://github.com:dway17/codex-bloom.git</developerConnection>
+	</scm>
+
+	<developers>
+		<developer>
+			<name>Thomas Richter</name>
+			<email>th.richter@uksh.de</email>
+			<organization>Sektion Medizinische Informatik - Institut für Medizinische Informatik und Statistik - Universitätsklinikum Schleswig-Holstein</organization>
+			<organizationUrl>https://mi-ki.eu/</organizationUrl>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+	</properties>
+
+	<packaging>jar</packaging>
+
+</project>
