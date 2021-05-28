@@ -4,7 +4,7 @@ package io.github.dway17.codex_bloom;
 import java.time.LocalDate;
 import java.util.Date;
 
-public interface IBloomFilter {
+public interface IBloomHash {
 
 	String createBase64Result(String firstName, String lastName, char gender, Date bithdate);
 

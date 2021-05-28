@@ -7,7 +7,11 @@ import java.util.Base64;
 import java.util.Base64.Encoder;
 import java.util.Date;
 
-public class BloomFilter implements IBloomFilter {
+public class BloomHash implements IBloomHash {
+
+	public static void main(String[] args) {
+		System.out.println(new BloomHash().createBase64Result("", "", 'm', 2001, 12, 13));
+	}
 
 	@Override
 	public String createBase64Result(String firstName, String lastName, char gender, Date bithdate) {
