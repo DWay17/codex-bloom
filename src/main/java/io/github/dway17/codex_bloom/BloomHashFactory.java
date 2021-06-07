@@ -5,7 +5,7 @@ public class BloomHashFactory {
 
 	public static IBloomHash getDefault() {
 		// TODO Auto-generated method stub
-		return new BloomHash();
+		return new BloomHash(0, 0, 0, 0);
 	}
 
 }
