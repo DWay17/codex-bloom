@@ -9,6 +9,7 @@ import java.util.Date;
 
 public class BloomHash implements IBloomHash {
 
+	public BloomHash(long seedFirstName, long seedLastName, long seedBirthdate, long seedGender) {
 	}
 
 	@Override
