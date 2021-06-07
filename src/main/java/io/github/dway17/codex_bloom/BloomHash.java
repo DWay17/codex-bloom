@@ -9,8 +9,6 @@ import java.util.Date;
 
 public class BloomHash implements IBloomHash {
 
-	public static void main(String[] args) {
-		System.out.println(new BloomHash().createBase64Result("", "", 'm', 2001, 12, 13));
 	}
 
 	@Override
