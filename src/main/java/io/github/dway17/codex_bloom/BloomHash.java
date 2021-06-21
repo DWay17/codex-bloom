@@ -29,7 +29,7 @@ public class BloomHash implements IBloomHash {
 	public String createBase64Result(String firstName, String lastName, char gender, LocalDate bithdate) {
 		// TODO Auto-generated method stub
 		Encoder encoder = Base64.getEncoder();
-		return encoder.encodeToString(new byte[2000]);
+		return encoder.encodeToString(new byte[2000 / 8]);
 	}
 
 
