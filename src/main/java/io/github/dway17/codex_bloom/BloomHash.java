@@ -138,9 +138,8 @@ public class BloomHash implements IBloomHash {
 
     BitSet balanceBloomFilter(BitSet bloomFilter) {
 	// TODO use boolean ops
-	// bloomFilter + negated;
-	// FIXME use random and seed
-	Random random = new Random(seedBalanced);
+	/* Balanced Bloom filters can be constructed by concatenating a Bloom filter
+	 * with length l with a negated copy of the same Bloom filter. */
 
 	int l = bloomFilter.length();
 	BitSet ret = new BitSet(l * 2);
@@ -151,6 +150,10 @@ public class BloomHash implements IBloomHash {
 		ret.set(i);
 	    }
 	}
+	/* The resulting bit array of length 2 ∗ l has to be permuted. */
+	// FIXME use random and seed
+	Random random = new Random(seedBalanced);
+
 	return ret;
     }
 
