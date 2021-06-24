@@ -45,12 +45,12 @@ public class BloomHash implements IBloomHash {
 
     private DateTimeFormatter formatter;
 
-    public BloomHash(long seedFirstName, long seedLastName, long seedBirthdate, long seedGender) {
+    public BloomHash(long seedFirstName, long seedLastName, long seedBirthdate, long seedGender, long seedBalanced) {
 	this.seedFirstName = seedFirstName;
 	this.seedLastName = seedLastName;
 	this.seedBirthdate = seedBirthdate;
 	this.seedGender = seedGender;
-	this.seedBalanced = 735471283; // FIXME param
+	this.seedBalanced = seedBalanced;
 
 	this.vocFirstName = "ABCDEFGHIJKLMNOPQRSTUVWXYZ .-0123456789";
 	this.vocLastName = "ABCDEFGHIJKLMNOPQRSTUVWXYZ .-0123456789";
