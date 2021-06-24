@@ -1,5 +1,5 @@
-package io.github.dway17.codex_bloom;
 
+package io.github.dway17.codex_bloom;
 
 public class BloomHashFactory {
 
@@ -7,5 +7,6 @@ public class BloomHashFactory {
 		// TODO Auto-generated method stub
 		return new BloomHash(0, 0, 0, 0);
 	}
+
 
 }

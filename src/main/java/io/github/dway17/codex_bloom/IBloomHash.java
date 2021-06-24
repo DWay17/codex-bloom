@@ -13,4 +13,5 @@ public interface IBloomHash {
 
 	String createBase64Result(String firstName, String lastName, char gender, LocalDate bithdate);
 
+
 }

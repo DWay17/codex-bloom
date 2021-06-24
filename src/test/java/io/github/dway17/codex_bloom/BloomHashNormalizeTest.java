@@ -15,7 +15,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.*;
 
-
 class BloomHashNormalizeTest {
 
 	@BeforeAll
@@ -33,6 +32,7 @@ class BloomHashNormalizeTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
+
 	@Test
 	void testNormalize() {
 		BloomHash bh = new BloomHash(0, 0, 0, 0);
@@ -68,5 +68,6 @@ class BloomHashNormalizeTest {
 		String expected = " AZ";
 		assertEquals(expected, actual);
 	}
+
 
 }
