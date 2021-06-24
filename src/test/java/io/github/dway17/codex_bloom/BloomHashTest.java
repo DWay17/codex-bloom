@@ -36,7 +36,7 @@ class BloomHashTest {
 
     @Test
     void testBalanceBloomFilterSize() {
-	BloomHash bf = new BloomHash(0, 0, 0, 0);
+	BloomHash bf = new BloomHash(0, 0, 0, 0, 0);
 	BitSet in = new BitSet(4);
 	in.flip(0, 4);
 	BitSet actual = bf.balanceBloomFilter(in);
@@ -45,7 +45,7 @@ class BloomHashTest {
 
     @Test
     void testBalanceBloomFilterSize2() {
-	BloomHash bf = new BloomHash(0, 0, 0, 0);
+	BloomHash bf = new BloomHash(0, 0, 0, 0, 0);
 	BitSet in = new BitSet(1000);
 //	in.flip(0, 4);
 	BitSet actual = bf.balanceBloomFilter(in);
@@ -54,7 +54,7 @@ class BloomHashTest {
 
     @Test
     void testCalcDateSep() {
-	BloomHash bf = new BloomHash(0, 0, 0, 0);
+	BloomHash bf = new BloomHash(0, 0, 0, 0, 0);
 	String actual = bf.calcDateSep("12,12,1212");
 	String expected = ",";
 	assertEquals(expected, actual);
