@@ -55,7 +55,7 @@ public class BloomHash implements IBloomHash {
 	this.vocFirstName = "ABCDEFGHIJKLMNOPQRSTUVWXYZ .-0123456789";
 	this.vocLastName = "ABCDEFGHIJKLMNOPQRSTUVWXYZ .-0123456789";
 	this.vocBirthdate = "0123456789";
-	this.vocGender = "mfxou";
+	this.vocGender = "mfoux";
 	this.vocAll = vocFirstName + vocGender;
 
 	removeFirstName = new HashSet<>();
