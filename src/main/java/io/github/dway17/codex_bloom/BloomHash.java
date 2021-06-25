@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.Base64.Encoder;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -202,9 +203,7 @@ public class BloomHash implements IBloomHash {
 
     void insertInTable(LinkedHashMap<String, BitSet> table, Random r, String s1, String s2) {
 	BitSet bs = new BitSet(1000);
-	for (int i = 0; i < 24; i++) {
-	    bs.set(r.nextInt(1000));
-	}
+	IntStream.range(1, 5).forEach(i -> bs.set(r.nextInt(1000)));
 	table.putIfAbsent(s1 + s2, bs);
     }
 
