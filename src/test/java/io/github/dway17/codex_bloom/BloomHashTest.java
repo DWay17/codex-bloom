@@ -4,10 +4,11 @@ package io.github.dway17.codex_bloom;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
-import java.util.BitSet;
+//import java.util.BitSet;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Set;
+import java.util.*;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.AfterEach;
@@ -62,7 +63,14 @@ class BloomHashTest {
 
     @Test
     void testHashBigram() {
-	fail("Not yet implemented");
+	BloomHash bf = new BloomHash(0, 0, 0, 0, 0);
+	LinkedHashMap<String, BitSet> table = new LinkedHashMap<>();
+	long[] longs = new long[] { 1L };
+	BitSet bitSet = new BitSet(1);
+	bitSet.set(1);
+	table.put("  ", bitSet);
+	BitSet actual = bf.randomHash("  ", table);
+	assertTrue(actual.get(1));
     }
 
 
