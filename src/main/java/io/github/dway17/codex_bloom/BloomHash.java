@@ -205,21 +205,21 @@ public class BloomHash implements IBloomHash {
     }
 
     String normalize(boolean toUpper, String s, String voc, Set<String> removeSet, Map<String, String> transformation) {
-	String ret;
-	if (toUpper) {
-	    ret = s.toUpperCase();
-	} else {
-	    ret = s;
+	String ret = s;
+	if (null != removeSet) {
+	    for (String rem : removeSet) {
+		ret = ret.replace(rem, "");
+	    }
 	}
 	if (null != transformation) {
 	    for (Entry<String, String> entry : transformation.entrySet()) {
-		ret = ret.replace(entry.getKey().toUpperCase(), entry.getValue().toUpperCase());
+		ret = ret.replace(entry.getKey(), entry.getValue());
 	    }
 	}
-	if (null != removeSet) {
-	    for (String rem : removeSet) {
-		ret = ret.replace(rem.toUpperCase(), "");
-	    }
+	if (toUpper) {
+	    ret = ret.toUpperCase();
+	} else {
+	    ret = ret;
 	}
 	// FIXME: remove not voc
 	LOGGER.debug("'" + s + "' -> '" + ret + "'");
