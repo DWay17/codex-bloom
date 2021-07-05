@@ -23,7 +23,7 @@ public class BloomHashTestHGW {
     void testMM() {
 	IBloomHash bloomHash = BloomHashFactory.getDefault();
 	String actual = bloomHash.createBase64Result("Max", "Mustermann", 'm', 1976, 2, 1);
-	String expected = "zftf0sCRpzHN2ums2xFX8DOsoT6oyjKduo8+bmTYbrQ+eOVRmViF9bDDcul7Kc1qXY88VDpHBBCXYZp8qbCHqhvRA1J+CMFW3L60ZEjDzdhylnx/+fnce7Pp2UYAeb/sQOPhC5oCIZ9jkl73YpGIeqzsDRGiyEt55v1rNQmIwd7zAJHi9UoGq2wAhA+v3kzpUHv9EfGmrlItYjcU5pTon27IJaWRLg+1YotsjQG7NEQ5oR4WRIxRWXdcbR7ANofvFNq7MA1AGiwcpVleZuEEORQKdrJLqTmWx2lYxIb8uaCQdLIj3ovW50kU/rfH+2+aqWnP5DA0L7azvg==";
+	String expected = "3ftf0sARpzDlWums3xF39nOsITaAyDTdvg88bmTYbrQ+eOdRGViE9bBFYul7Kcl6DQ+0UDJHJBC3YZp8qbCHrlfRA1pcGMHW2P60dUjDzdgynXz/+Pncc7PpyUYAfbXuQOPhCppCIRdhkh73YLGIeoysDTOizkt55vXrNQmIwc7zALFi9UgGq2xAhA+vvFyjUmr9EeGnrlItYjcU5JXKn27ILeeRLgu3YotuiQC7NAQpoJ4WZIxRbXNc7S7gNod7FNr7ME1BOjzco9nf5qEEORgKYrJLrTiWx2lZhIb8uaCAfLIj3o/W90sU/rPj+2+KKWnPxDT0L5azrg==";
 	assertTrue(actual.length() == 336);
 	assertEquals(expected, actual);
     }
