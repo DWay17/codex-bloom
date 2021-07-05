@@ -114,8 +114,9 @@ public class BloomHash implements IBloomHash {
 	bs.or(randomHash(birthdateS, birthdateTable));
 
 	BitSet balanceBloomFilter = balanceBloomFilter(bs);
+	BitSet permutedBloomFilter = permuteBloomfilter(balanceBloomFilter, seedBalanced);
 	Encoder encoder = Base64.getEncoder();
-	return encoder.encodeToString(balanceBloomFilter.toByteArray());
+	return encoder.encodeToString(permutedBloomFilter.toByteArray());
     }
 
     public String createBase64Result(String firstName, String lastName, char gender, String birthday) {
@@ -151,10 +152,6 @@ public class BloomHash implements IBloomHash {
 		ret.set(i);
 	    }
 	}
-	/* The resulting bit array of length 2 ∗ l has to be permuted. */
-	// FIXME use random and seed
-	Random random = new Random(seedBalanced);
-
 	return ret;
     }
 
@@ -231,6 +228,19 @@ public class BloomHash implements IBloomHash {
 
     String padding(String firstName) {
 	return " " + firstName + " ";
+    }
+
+    BitSet permuteBloomfilter(BitSet bloomFilter, long seebBalanced) {
+	Random r = new Random(seedBalanced);
+	int length = bloomFilter.length();
+	for (int i = 0; i < length; i++) {
+	    int newPos = r.nextInt(length);
+	    boolean bitI = bloomFilter.get(i);
+	    boolean bitNewPos = bloomFilter.get(newPos);
+	    bloomFilter.set(i, bitNewPos);
+	    bloomFilter.set(newPos, bitI);
+	}
+	return bloomFilter;
     }
 
     BitSet randomHash(String s, LinkedHashMap<String, BitSet> table) {
