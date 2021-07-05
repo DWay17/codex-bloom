@@ -279,8 +279,8 @@ public class BloomHash implements IBloomHash {
 	removeLastName.add("nat.");
 	removeLastName.add("Ing.");
 	removeLastName.add("Dipl.");
-	removeLastName.add(" ");
 	removeLastName.add(",");
+	removeLastName.add(" ");
 	removeLastName.add("-");
 
     }
