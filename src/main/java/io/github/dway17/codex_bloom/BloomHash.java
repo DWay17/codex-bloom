@@ -183,18 +183,14 @@ public class BloomHash implements IBloomHash {
 
     void initLookupTable(long seedFirstName, long seedLastName, long seedBirthdate, long seedGender,
 	    String vocFirstName, String vocLastName, String vocBirthdate, String vocGender) {
-	firstNameTable = createTable(seedFirstName, vocFirstName);
 	firstNameTable = createTable(seedFirstName, vocAll);
 
-	lastNameTable = createTable(seedLastName, vocLastName);
 	lastNameTable = createTable(seedLastName, vocAll);
 
-	birthdateTable = createTable(seedBirthdate, " " + vocBirthdate);
-	birthdateTable = createTable(seedBirthdate, " " + vocAll);
+	birthdateTable = createTable(seedBirthdate, vocAll);
 	LOGGER.debug("birthdateTable=" + birthdateTable.keySet());
 
-	genderTable = createTable(seedGender, " " + vocGender);
-	genderTable = createTable(seedGender, " " + vocAll);
+	genderTable = createTable(seedGender, vocAll);
 	LOGGER.debug("genderTable=" + genderTable.keySet());
     }
 
