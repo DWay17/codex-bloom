@@ -292,11 +292,11 @@ public class BloomHash implements IBloomHash {
 	transFirstName.put("ü", "ue");
 	transFirstName.put("ß", "ss");
 
-	transFirstName.put("é", "e");
-	transFirstName.put("ä", "ae");
-	transFirstName.put("ö", "oe");
-	transFirstName.put("ü", "ue");
-	transFirstName.put("ß", "ss");
+	transLastName.put("é", "e");
+	transLastName.put("ä", "ae");
+	transLastName.put("ö", "oe");
+	transLastName.put("ü", "ue");
+	transLastName.put("ß", "ss");
     }
 
 
