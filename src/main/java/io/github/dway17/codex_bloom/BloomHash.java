@@ -75,7 +75,7 @@ public class BloomHash implements IBloomHash {
 		vocGender);
 
 	DateTimeFormatterBuilder dateTimeFormatterBuilder = new DateTimeFormatterBuilder();
-	formatter = dateTimeFormatterBuilder.appendPattern("uuuuMdd").toFormatter();
+	formatter = dateTimeFormatterBuilder.appendPattern("uuuuMMdd").toFormatter();
 
     }
 
@@ -177,8 +177,8 @@ public class BloomHash implements IBloomHash {
 	return table;
     }
 
-    String formatBirthdate(LocalDate bithdate) {
-	return bithdate.format(formatter);
+    String formatBirthdate(LocalDate localDate) {
+	return localDate.format(formatter);
     }
 
     void initLookupTable(long seedFirstName, long seedLastName, long seedBirthdate, long seedGender,

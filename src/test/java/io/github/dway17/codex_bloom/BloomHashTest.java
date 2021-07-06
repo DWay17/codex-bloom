@@ -62,6 +62,18 @@ class BloomHashTest {
     }
 
     @Test
+    void testFormatBirthdate() {
+	BloomHash bf = new BloomHash(0, 0, 0, 0, 0);
+	LocalDate localDate = LocalDate.now();
+	String actual = bf.formatBirthdate(localDate);
+	assertEquals(4 + 2 + 2, actual.length());
+	localDate = LocalDate.of(2022, 1, 1);
+	actual = bf.formatBirthdate(localDate);
+	String expected = "20220101";
+	assertEquals(expected, actual);
+    }
+
+    @Test
     void testHashBigram() {
 	BloomHash bf = new BloomHash(0, 0, 0, 0, 0);
 	LinkedHashMap<String, BitSet> table = new LinkedHashMap<>();
