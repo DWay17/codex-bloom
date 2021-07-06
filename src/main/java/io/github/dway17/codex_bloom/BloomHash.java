@@ -17,10 +17,10 @@ public class BloomHash implements IBloomHash {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(BloomHash.class);
 
-    private LinkedHashMap<String, BitSet> firstNameTable;
-    private LinkedHashMap<String, BitSet> lastNameTable;
-    private LinkedHashMap<String, BitSet> birthdateTable;
-    private LinkedHashMap<String, BitSet> genderTable;
+    private LinkedHashMap<String, BitSetFixedSize> firstNameTable;
+    private LinkedHashMap<String, BitSetFixedSize> lastNameTable;
+    private LinkedHashMap<String, BitSetFixedSize> birthdateTable;
+    private LinkedHashMap<String, BitSetFixedSize> genderTable;
 
     private long seedFirstName;
     private long seedLastName;
@@ -95,7 +95,7 @@ public class BloomHash implements IBloomHash {
     @Override
     public String createBase64Result(String firstName, String lastName, char gender, LocalDate bithdate) {
 	// TODO Auto-generated method stub
-	BitSet bs = new BitSet(1000);
+	BitSetFixedSize bs = new BitSetFixedSize(1000);
 
 	firstName = normalize(true, firstName, vocFirstName, removeFirstName, transFirstName);
 	firstName = padding(firstName);
@@ -113,8 +113,8 @@ public class BloomHash implements IBloomHash {
 	birthdateS = padding(birthdateS);
 	bs.or(randomHash(birthdateS, birthdateTable));
 
-	BitSet balanceBloomFilter = balanceBloomFilter(bs);
-	BitSet permutedBloomFilter = permuteBloomfilter(balanceBloomFilter, seedBalanced);
+	BitSetFixedSize balanceBloomFilter = balanceBloomFilter(bs);
+	BitSetFixedSize permutedBloomFilter = permuteBloomfilter(balanceBloomFilter, seedBalanced);
 	Encoder encoder = Base64.getEncoder();
 	return encoder.encodeToString(permutedBloomFilter.toByteArray());
     }
@@ -138,13 +138,13 @@ public class BloomHash implements IBloomHash {
 		LocalDateTime.of(birthYear, birthMonth, birthDay, 0, 0, 0).toLocalDate());
     }
 
-    BitSet balanceBloomFilter(BitSet bloomFilter) {
+    BitSetFixedSize balanceBloomFilter(BitSetFixedSize bloomFilter) {
 	// TODO use boolean ops
 	/* Balanced Bloom filters can be constructed by concatenating a Bloom filter
 	 * with length l with a negated copy of the same Bloom filter. */
 
-	int l = bloomFilter.length();
-	BitSet ret = new BitSet(l * 2);
+	int l = bloomFilter.fixedSize();
+	BitSetFixedSize ret = new BitSetFixedSize(l * 2);
 	for (int i = 0; i < l; i++) {
 	    if (bloomFilter.get(i)) {
 		ret.set(i + l);
@@ -165,10 +165,10 @@ public class BloomHash implements IBloomHash {
 	}
     }
 
-    LinkedHashMap<String, BitSet> createTable(long seed, String voc) {
+    LinkedHashMap<String, BitSetFixedSize> createTable(long seed, String voc) {
 	Random r;
 	r = new Random(seed);
-	LinkedHashMap<String, BitSet> table = new LinkedHashMap<>(0);
+	LinkedHashMap<String, BitSetFixedSize> table = new LinkedHashMap<>(0);
 	for (String s1 : voc.split("")) {
 	    for (String s2 : voc.split("")) {
 		insertInTable(table, r, s1, s2);
@@ -194,9 +194,9 @@ public class BloomHash implements IBloomHash {
 	LOGGER.debug("genderTable=" + genderTable.keySet());
     }
 
-    void insertInTable(LinkedHashMap<String, BitSet> table, Random r, String s1, String s2) {
-	BitSet bs = new BitSet(1000);
-	IntStream.range(1, 5).forEach(i -> bs.set(r.nextInt(1000)));
+    void insertInTable(LinkedHashMap<String, BitSetFixedSize> table, Random r, String s1, String s2) {
+	BitSetFixedSize bs = new BitSetFixedSize(1000);
+	IntStream.rangeClosed(1, 25).forEach(i -> bs.set(r.nextInt(1000)));
 	table.putIfAbsent(s1 + s2, bs);
     }
 
@@ -226,9 +226,9 @@ public class BloomHash implements IBloomHash {
 	return " " + firstName + " ";
     }
 
-    BitSet permuteBloomfilter(BitSet bloomFilter, long seebBalanced) {
+    BitSetFixedSize permuteBloomfilter(BitSetFixedSize bloomFilter, long seebBalanced) {
 	Random r = new Random(seedBalanced);
-	int length = bloomFilter.length();
+	int length = bloomFilter.fixedSize();
 	for (int i = 0; i < length; i++) {
 	    int newPos = r.nextInt(length);
 	    boolean bitI = bloomFilter.get(i);
@@ -239,17 +239,17 @@ public class BloomHash implements IBloomHash {
 	return bloomFilter;
     }
 
-    BitSet randomHash(String s, LinkedHashMap<String, BitSet> table) {
+    BitSetFixedSize randomHash(String s, LinkedHashMap<String, BitSetFixedSize> table) {
 	String bigram;
-	BitSet bs = new BitSet(1000);
+	BitSetFixedSize bs = new BitSetFixedSize(1000);
 	for (int i = 0; i < s.length() - 1; i++) {
 	    bigram = s.substring(i, i + 2);
 	    LOGGER.trace("i = " + i + "" + "\t" + "bigram = '" + bigram + "'.");
-	    BitSet bitSet = table.get(bigram);
-	    if (null == bitSet) {
+	    BitSetFixedSize bitSetFixedSize = table.get(bigram);
+	    if (null == bitSetFixedSize) {
 		throw new RuntimeException("bigram '" + bigram + "' is not contained in '" + table.keySet() + "'.");
 	    } else {
-		bs.or(bitSet);
+		bs.or(bitSetFixedSize);
 	    }
 	}
 	return bs;
