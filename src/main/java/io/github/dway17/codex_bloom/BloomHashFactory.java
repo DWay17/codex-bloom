@@ -12,7 +12,7 @@ public class BloomHashFactory {
     static long seedGender;
     static long seedBalanced;
 
-	public static IBloomHash getDefault() {
+    public static IBloomHash getDefault() {
 	return new BloomHash(seedFirstName, seedLastName, seedBirthdate, seedGender, seedBalanced);
     }
 
@@ -27,7 +27,7 @@ public class BloomHashFactory {
 	seedGender = Long.valueOf((String) properties.get("seedGender"));
 	seedBalanced = Long.valueOf((String) properties.get("seedBalanced"));
 	stream.close();
-	}
+    }
 
 
 }
