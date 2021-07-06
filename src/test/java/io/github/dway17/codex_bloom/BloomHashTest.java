@@ -51,7 +51,7 @@ class BloomHashTest {
 	BitSetFixedSize in = new BitSetFixedSize(1000);
 //	in.flip(0, 4);
 	BitSetFixedSize actual = bf.balanceBloomFilter(in);
-	assertEquals(2000, actual.length());
+	assertEquals(2000, actual.fixedSize());
     }
 
     @Test
@@ -92,7 +92,7 @@ class BloomHashTest {
 	BitSetFixedSize in = new BitSetFixedSize(4);
 	long r = 0;
 	BitSetFixedSize actual = bf.permuteBloomfilter(in, r);
-	assertEquals(4, actual.length());
+	assertEquals(4, actual.fixedSize());
     }
 
     @Test
@@ -102,7 +102,7 @@ class BloomHashTest {
 	in.flip(0);
 	long r = 0;
 	BitSetFixedSize actual = bf.permuteBloomfilter(in, r);
-	assertEquals(4, actual.length());
+	assertEquals(4, actual.fixedSize());
     }
 
     @Test
@@ -112,7 +112,7 @@ class BloomHashTest {
 	in.flip(0, 4);
 	long r = 0;
 	BitSetFixedSize actual = bf.permuteBloomfilter(in, r);
-	assertEquals(4, actual.length());
+	assertEquals(4, actual.fixedSize());
     }
 
 
