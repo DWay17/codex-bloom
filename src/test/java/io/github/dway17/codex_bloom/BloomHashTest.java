@@ -6,9 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 //import java.util.BitSet;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Set;
 import java.util.*;
 
 import org.junit.jupiter.api.*;
@@ -84,6 +81,20 @@ class BloomHashTest {
 	table.put("  ", bitSetFixedSize);
 	BitSetFixedSize actual = bf.randomHash("  ", table);
 	assertTrue(actual.get(1));
+    }
+
+    @Test
+    void testInsertInTable() {
+	BloomHash bf = new BloomHash(0, 0, 0, 0, 0);
+	LinkedHashMap<String, BitSetFixedSize> table = new LinkedHashMap<>();
+	Random r = new Random(1234);
+	String s1 = "X";
+	String s2 = "Y";
+	bf.insertInTable(table, r, s1, s2);
+	assertEquals(1, table.size());
+	BitSetFixedSize bs = table.get("XY");
+	int cardinality = bs.cardinality();
+	assertEquals(25, cardinality);
     }
 
     @Test
