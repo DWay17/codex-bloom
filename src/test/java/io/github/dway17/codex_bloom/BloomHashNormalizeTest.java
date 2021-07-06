@@ -36,7 +36,7 @@ class BloomHashNormalizeTest {
     @Test
     void testNormalize() {
 	BloomHash bh = new BloomHash(0, 0, 0, 0, 0);
-	String s = "PrOf. aéz";
+	String s = "Prof. aéz";
 	String voc = "AZ";
 	Set<String> remSet = new HashSet();
 	remSet.add("Prof.");
@@ -60,7 +60,7 @@ class BloomHashNormalizeTest {
     @Test
     void testNormalizeTransNull() {
 	BloomHash bh = new BloomHash(0, 0, 0, 0, 0);
-	String s = "PrOf. az";
+	String s = "Prof. az";
 	String voc = "AZ";
 	Set<String> remSet = new HashSet();
 	remSet.add("Prof.");
@@ -68,6 +68,5 @@ class BloomHashNormalizeTest {
 	String expected = " AZ";
 	assertEquals(expected, actual);
     }
-
 
 }
