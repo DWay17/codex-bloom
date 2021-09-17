@@ -12,9 +12,9 @@ public class BitSetFixedSize extends java.util.BitSet {
 	throw new IndexOutOfBoundsException();
     }
 
-    public BitSetFixedSize(int i) {
-	super(i);
-	fixedSize = i;
+    public BitSetFixedSize(int nbits) {
+	super(nbits);
+	fixedSize = nbits;
     }
 
     @Override
