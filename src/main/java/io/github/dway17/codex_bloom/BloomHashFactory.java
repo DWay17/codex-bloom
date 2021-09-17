@@ -4,7 +4,12 @@ package io.github.dway17.codex_bloom;
 import java.io.*;
 import java.util.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class BloomHashFactory {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(BloomHashFactory.class);
 
     static long seedFirstName;
     static long seedLastName;
