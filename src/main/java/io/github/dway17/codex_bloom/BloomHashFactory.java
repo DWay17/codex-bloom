@@ -29,5 +29,14 @@ public class BloomHashFactory {
 	stream.close();
     }
 
+    {
+	try {
+	    loadProps();
+	} catch (IOException e) {
+	    LOGGER.error("Cannot load Properties.", e);
+	    throw new RuntimeException(e);
+	}
+    }
+
 
 }
