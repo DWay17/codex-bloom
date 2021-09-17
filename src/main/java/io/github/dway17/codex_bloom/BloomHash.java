@@ -71,8 +71,7 @@ public class BloomHash implements IBloomHash {
 
 	initRemove();
 	initTrans();
-	initLookupTable(seedFirstName, seedLastName, seedBirthdate, seedGender, vocFirstName, vocLastName, vocBirthdate,
-		vocGender);
+	initLookupTable(seedFirstName, seedLastName, seedBirthdate, seedGender, vocAll, vocAll, vocAll, vocAll);
 
 	DateTimeFormatterBuilder dateTimeFormatterBuilder = new DateTimeFormatterBuilder();
 	formatter = dateTimeFormatterBuilder.appendPattern("uuuuMMdd").toFormatter();
@@ -143,13 +142,14 @@ public class BloomHash implements IBloomHash {
 	/* Balanced Bloom filters can be constructed by concatenating a Bloom filter
 	 * with length l with a negated copy of the same Bloom filter. */
 
-	int l = bloomFilter.fixedSize();
-	BitSetFixedSize ret = new BitSetFixedSize(l * 2);
-	for (int i = 0; i < l; i++) {
+	int lengthOld = bloomFilter.fixedSize();
+	int lengthNew = ((lengthOld + 1) * 2) - 1;
+	BitSetFixedSize ret = new BitSetFixedSize(lengthNew);
+	for (int i = 0; i <= lengthOld; i++) {
 	    if (bloomFilter.get(i)) {
-		ret.set(i + l);
-	    } else {
 		ret.set(i);
+	    } else {
+		ret.set(i + lengthOld + 1);
 	    }
 	}
 	return ret;
@@ -183,20 +183,23 @@ public class BloomHash implements IBloomHash {
 
     void initLookupTable(long seedFirstName, long seedLastName, long seedBirthdate, long seedGender,
 	    String vocFirstName, String vocLastName, String vocBirthdate, String vocGender) {
-	firstNameTable = createTable(seedFirstName, vocAll);
+	firstNameTable = createTable(seedFirstName, vocFirstName);
 
-	lastNameTable = createTable(seedLastName, vocAll);
+	lastNameTable = createTable(seedLastName, vocLastName);
 
-	birthdateTable = createTable(seedBirthdate, vocAll);
+	birthdateTable = createTable(seedBirthdate, vocBirthdate);
 	LOGGER.debug("birthdateTable=" + birthdateTable.keySet());
 
-	genderTable = createTable(seedGender, vocAll);
+	genderTable = createTable(seedGender, vocGender);
 	LOGGER.debug("genderTable=" + genderTable.keySet());
     }
 
     void insertInTable(LinkedHashMap<String, BitSetFixedSize> table, Random r, String s1, String s2) {
 	BitSetFixedSize bs = new BitSetFixedSize(1000);
 	IntStream.rangeClosed(1, 25).forEach(i -> bs.set(r.nextInt(1000)));
+//	for (int i = 0; i < 25; i++) {
+//	    bs.set(r.nextInt(1000));
+//	}
 	table.putIfAbsent(s1 + s2, bs);
     }
 
