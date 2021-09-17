@@ -47,6 +47,9 @@ public class BloomHash implements IBloomHash {
     private DateTimeFormatter formatter;
 
     public BloomHash(long seedFirstName, long seedLastName, long seedBirthdate, long seedGender, long seedBalanced) {
+	if (seedFirstName == 0 || seedLastName == 0 || seedBirthdate == 0 || seedGender == 0 || seedBalanced == 0) {
+	    LOGGER.warn("some seed is '0'. fill property.");
+	}
 	this.seedFirstName = seedFirstName;
 	this.seedLastName = seedLastName;
 	this.seedBirthdate = seedBirthdate;
