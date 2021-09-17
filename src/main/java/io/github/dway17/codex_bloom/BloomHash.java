@@ -71,7 +71,7 @@ public class BloomHash implements IBloomHash {
 
 	initRemove();
 	initTrans();
-	initLookupTable(seedGender, seedGender, seedGender, seedGender, vocFirstName, vocLastName, vocBirthdate,
+	initLookupTable(seedFirstName, seedLastName, seedBirthdate, seedGender, vocFirstName, vocLastName, vocBirthdate,
 		vocGender);
 
 	DateTimeFormatterBuilder dateTimeFormatterBuilder = new DateTimeFormatterBuilder();
