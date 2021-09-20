@@ -187,14 +187,13 @@ public class BloomHash implements IBloomHash {
     void initLookupTable(long seedFirstName, long seedLastName, long seedBirthdate, long seedGender,
 	    String vocFirstName, String vocLastName, String vocBirthdate, String vocGender) {
 	firstNameTable = createTable(seedFirstName, vocFirstName);
-
+	logTable("firstNameTable", firstNameTable);
 	lastNameTable = createTable(seedLastName, vocLastName);
-
+	logTable("lastNameTable", lastNameTable);
 	birthdateTable = createTable(seedBirthdate, vocBirthdate);
-	LOGGER.debug("birthdateTable=" + birthdateTable.keySet());
-
+	logTable("birthdateTable", birthdateTable);
 	genderTable = createTable(seedGender, vocGender);
-	LOGGER.debug("genderTable=" + genderTable.keySet());
+	logTable("genderTable", genderTable);
     }
 
     void insertInTable(LinkedHashMap<String, BitSetFixedSize> table, Random r, String s1, String s2) {
@@ -297,6 +296,26 @@ public class BloomHash implements IBloomHash {
 	transLastName.put("ö", "oe");
 	transLastName.put("ü", "ue");
 	transLastName.put("ß", "ss");
+    }
+
+    private void logTable(String name, LinkedHashMap<String, BitSetFixedSize> table) {
+	StringBuffer sb = new StringBuffer();
+	sb.append(name);
+	sb.append(": ");
+	sb.append("size=");
+	sb.append(table.size());
+	sb.append(" ");
+	Set<Entry<String, BitSetFixedSize>> entries = table.entrySet();
+	int i = 0;
+	for (Iterator<Entry<String, BitSetFixedSize>> iterator = entries.iterator(); iterator.hasNext() && i < 3; i++) {
+	    Entry<String, BitSetFixedSize> entry = (Entry<String, BitSetFixedSize>) iterator.next();
+	    sb.append(entry.getKey());
+	    sb.append("(");
+	    sb.append(entry.getValue().cardinality());
+	    sb.append(") ");
+	}
+	sb.append(" ... ");
+	LOGGER.debug(sb.toString());
     }
 
 
