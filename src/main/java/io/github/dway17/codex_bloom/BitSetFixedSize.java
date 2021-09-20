@@ -25,7 +25,7 @@ public class BitSetFixedSize extends java.util.BitSet {
 
     @Override
     public void clear(int bitIndex) {
-	if (bitIndex > fixedSize) {
+	if (bitIndex >= fixedSize) {
 	    throw new IndexOutOfBoundsException();
 	}
 	super.clear(bitIndex);
@@ -33,7 +33,7 @@ public class BitSetFixedSize extends java.util.BitSet {
 
     @Override
     public void clear(int fromIndex, int toIndex) {
-	if (fromIndex > fixedSize || toIndex > fixedSize) {
+	if (fromIndex >= fixedSize || toIndex >= fixedSize) {
 	    throw new IndexOutOfBoundsException();
 	}
 	super.clear(fromIndex, toIndex);
@@ -45,7 +45,7 @@ public class BitSetFixedSize extends java.util.BitSet {
 
     @Override
     public void flip(int bitIndex) {
-	if (bitIndex > fixedSize) {
+	if (bitIndex >= fixedSize) {
 	    throw new IndexOutOfBoundsException();
 	}
 	super.flip(bitIndex);
@@ -53,7 +53,7 @@ public class BitSetFixedSize extends java.util.BitSet {
 
     @Override
     public void flip(int fromIndex, int toIndex) {
-	if (fromIndex > fixedSize || toIndex > fixedSize) {
+	if (fromIndex >= fixedSize || toIndex > fixedSize) {
 	    throw new IndexOutOfBoundsException();
 	}
 	super.flip(fromIndex, toIndex);
@@ -61,7 +61,7 @@ public class BitSetFixedSize extends java.util.BitSet {
 
     @Override
     public boolean get(int bitIndex) {
-	if (bitIndex > fixedSize) {
+	if (bitIndex >= fixedSize) {
 	    throw new IndexOutOfBoundsException();
 	}
 	return super.get(bitIndex);
@@ -69,7 +69,7 @@ public class BitSetFixedSize extends java.util.BitSet {
 
     @Override
     public BitSet get(int fromIndex, int toIndex) {
-	if (fromIndex > fixedSize || toIndex > fixedSize) {
+	if (fromIndex >= fixedSize || toIndex > fixedSize) {
 	    throw new IndexOutOfBoundsException();
 	}
 	return super.get(fromIndex, toIndex);
@@ -77,7 +77,7 @@ public class BitSetFixedSize extends java.util.BitSet {
 
     @Override
     public void set(int bitIndex) {
-	if (bitIndex > fixedSize) {
+	if (bitIndex >= fixedSize) {
 	    throw new IndexOutOfBoundsException();
 	}
 	super.set(bitIndex);
@@ -85,7 +85,7 @@ public class BitSetFixedSize extends java.util.BitSet {
 
     @Override
     public void set(int bitIndex, boolean value) {
-	if (bitIndex > fixedSize) {
+	if (bitIndex >= fixedSize) {
 	    throw new IndexOutOfBoundsException();
 	}
 	super.set(bitIndex, value);
@@ -93,7 +93,7 @@ public class BitSetFixedSize extends java.util.BitSet {
 
     @Override
     public void set(int fromIndex, int toIndex) {
-	if (fromIndex > fixedSize || toIndex > fixedSize) {
+	if (fromIndex >= fixedSize || toIndex > fixedSize) {
 	    throw new IndexOutOfBoundsException();
 	}
 	super.set(fromIndex, toIndex);
@@ -101,7 +101,7 @@ public class BitSetFixedSize extends java.util.BitSet {
 
     @Override
     public void set(int fromIndex, int toIndex, boolean value) {
-	if (fromIndex > fixedSize || toIndex > fixedSize) {
+	if (fromIndex >= fixedSize || toIndex > fixedSize) {
 	    throw new IndexOutOfBoundsException();
 	}
 	super.set(fromIndex, toIndex, value);
