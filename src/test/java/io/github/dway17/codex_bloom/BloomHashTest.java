@@ -44,35 +44,42 @@ class BloomHashTest {
 	assertEquals(false, in.get(1));
 	assertEquals(true, in.get(2));
 	assertEquals(false, in.get(3));
-	assertEquals(false, in.get(4));
 	BitSetFixedSize actual = bf.balanceBloomFilter(in);
+	assertEquals(8, actual.length());
 	assertEquals(false, actual.get(0));
 	assertEquals(false, actual.get(1));
 	assertEquals(true, actual.get(2));
 	assertEquals(false, actual.get(3));
-//	assertEquals(false, actual.get(4));
 
+	assertEquals(true, actual.get(4));
 	assertEquals(true, actual.get(5));
-	assertEquals(true, actual.get(6));
-	assertEquals(false, actual.get(7));
-	assertEquals(true, actual.get(8));
-	assertEquals(true, actual.get(9));
-//	assertEquals(8, actual.length());
+	assertEquals(false, actual.get(6));
+	assertEquals(true, actual.get(7));
+    }
+
+    @Test
+    void testBalanceBloomFilter0() {
+	BitSetFixedSize in = new BitSetFixedSize(1);
+	in.flip(0);
+	assertEquals(true, in.get(0));
+	BitSetFixedSize actual = bf.balanceBloomFilter(in);
+	assertEquals(2, actual.fixedSize());
+	assertEquals(true, actual.get(0));
+	assertEquals(false, actual.get(1));
     }
 
     @Test
     void testBalanceBloomFilter1() {
-	BitSetFixedSize in = new BitSetFixedSize(1);
+	BitSetFixedSize in = new BitSetFixedSize(2);
 	in.flip(1);
 	assertEquals(false, in.get(0));
 	assertEquals(true, in.get(1));
 	BitSetFixedSize actual = bf.balanceBloomFilter(in);
+	assertEquals(4, actual.fixedSize());
 	assertEquals(false, actual.get(0));
 	assertEquals(true, actual.get(1));
 	assertEquals(true, actual.get(2));
 	assertEquals(false, actual.get(3));
-
-//	assertEquals(8, actual.length());
     }
 
     @Test
@@ -80,15 +87,21 @@ class BloomHashTest {
 	BitSetFixedSize in = new BitSetFixedSize(4);
 	in.flip(0, 4);
 	BitSetFixedSize actual = bf.balanceBloomFilter(in);
-	assertEquals(9, actual.fixedSize());
+	assertEquals(8, actual.fixedSize());
     }
 
     @Test
     void testBalanceBloomFilterSize2() {
-	BitSetFixedSize in = new BitSetFixedSize(999);
-//	in.flip(0, 4);
+	BitSetFixedSize in = new BitSetFixedSize(1000);
 	BitSetFixedSize actual = bf.balanceBloomFilter(in);
-	assertEquals(1999, actual.fixedSize());
+	assertEquals(2000, actual.fixedSize());
+    }
+
+    @Test
+    void testBalanceBloomFilterSize22() {
+	BitSetFixedSize in = new BitSetFixedSize(1000);
+	BitSetFixedSize actual = bf.balanceBloomFilter(in);
+	assertEquals(2000, actual.fixedSize());
     }
 
     @Test
@@ -112,12 +125,11 @@ class BloomHashTest {
     @Test
     void testHashBigram() {
 	LinkedHashMap<String, BitSetFixedSize> table = new LinkedHashMap<>();
-	long[] longs = new long[] { 1L };
 	BitSetFixedSize bitSetFixedSize = new BitSetFixedSize(1);
-	bitSetFixedSize.set(1);
+	bitSetFixedSize.set(0);
 	table.put("  ", bitSetFixedSize);
 	BitSetFixedSize actual = bf.randomHash("  ", table);
-	assertTrue(actual.get(1));
+	assertTrue(actual.get(0));
     }
 
     @Test
@@ -129,8 +141,7 @@ class BloomHashTest {
 	bf.insertInTable(table, r, s1, s2);
 	assertEquals(1, table.size());
 	BitSetFixedSize bs = table.get("XY");
-	int cardinality = bs.cardinality();
-	assertEquals(25, cardinality);
+	assertEquals(25, bs.cardinality());
     }
 
     @Test
