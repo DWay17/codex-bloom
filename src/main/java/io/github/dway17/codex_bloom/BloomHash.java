@@ -74,7 +74,8 @@ public class BloomHash implements IBloomHash {
 
 	initRemove();
 	initTrans();
-	initLookupTable(seedFirstName, seedLastName, seedBirthdate, seedGender, vocAll, vocAll, vocAll, vocAll);
+	initLookupTable(this.seedFirstName, this.seedLastName, this.seedBirthdate, this.seedGender, //
+		vocAll, vocAll, vocAll, vocAll);
 
 	DateTimeFormatterBuilder dateTimeFormatterBuilder = new DateTimeFormatterBuilder();
 	formatter = dateTimeFormatterBuilder.appendPattern("uuuuMMdd").toFormatter();
@@ -141,18 +142,17 @@ public class BloomHash implements IBloomHash {
     }
 
     BitSetFixedSize balanceBloomFilter(BitSetFixedSize bloomFilter) {
-	// TODO use boolean ops
 	/* Balanced Bloom filters can be constructed by concatenating a Bloom filter
 	 * with length l with a negated copy of the same Bloom filter. */
 
 	int lengthOld = bloomFilter.fixedSize();
-	int lengthNew = ((lengthOld + 1) * 2) - 1;
+	int lengthNew = lengthOld * 2;
 	BitSetFixedSize ret = new BitSetFixedSize(lengthNew);
-	for (int i = 0; i <= lengthOld; i++) {
+	for (int i = 0; i < lengthOld; i++) {
 	    if (bloomFilter.get(i)) {
 		ret.set(i);
 	    } else {
-		ret.set(i + lengthOld + 1);
+		ret.set(i + lengthOld);
 	    }
 	}
 	return ret;
@@ -220,8 +220,6 @@ public class BloomHash implements IBloomHash {
 	}
 	if (toUpper) {
 	    ret = ret.toUpperCase();
-	} else {
-	    ret = ret;
 	}
 	// FIXME: remove not voc
 	LOGGER.debug("'" + s + "' -> '" + ret + "'");
