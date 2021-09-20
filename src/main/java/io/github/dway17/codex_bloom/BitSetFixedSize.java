@@ -12,6 +12,12 @@ public class BitSetFixedSize extends java.util.BitSet {
 	throw new IndexOutOfBoundsException();
     }
 
+    /** Creates a bit set whose initial size is large enough to explicitlyrepresent
+     * bits with indices in the range 0 through nbits-1. All bits are initially
+     * false.
+     * 
+     * @Throws NegativeArraySizeException - if the specified initial sizeis negative
+     * @param Parameters:nbits the initial size of the bit set */
     public BitSetFixedSize(int nbits) {
 	super(nbits);
 	fixedSize = nbits;
