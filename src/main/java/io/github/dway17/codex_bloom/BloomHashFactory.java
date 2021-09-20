@@ -17,7 +17,17 @@ public class BloomHashFactory {
     static long seedGender;
     static long seedBalanced;
 
+    private static boolean propsLoaded;
+
     public static IBloomHash getDefault() {
+	if (!propsLoaded) {
+	    try {
+		loadProps();
+	    } catch (IOException e) {
+		LOGGER.error("Cannot load Properties.", e);
+		throw new RuntimeException(e);
+	    }
+	}
 	return new BloomHash(seedFirstName, seedLastName, seedBirthdate, seedGender, seedBalanced);
     }
 
@@ -32,6 +42,7 @@ public class BloomHashFactory {
 	seedGender = Long.valueOf((String) properties.get("seedGender"));
 	seedBalanced = Long.valueOf((String) properties.get("seedBalanced"));
 	stream.close();
+	propsLoaded = true;
     }
 
     {
