@@ -15,7 +15,9 @@ public class BloomHashTestHGW {
 	IBloomHash bloomHash = BloomHashFactory.getDefault();
 	String actual = bloomHash.createBase64Result("Erika", "Mustermann", 'f', 1964, 8, 12);
 	String expected;
+	// first line is the result for real values with the seeds from the confluence page
 	expected = "h3le06jR5/HM2sm6YjAR8hevgR6p6zaZu9b+z2Ribq5OemT5mWgl9bjGcux6bcVaXY84VD4FXACWYbrmmJ6GizrpoVJ/CMHA3Z62aApDzfxj1nx/8Xl9evKo3EYg86usRmPBrb4DKB/jEG++y5lIVKz2DFGqyBd7xv1KEI2ikJ7XmNNmd3dyu2yAnY7UXCysEHv8OeGOtkDoZzYdvoEgTyZIJZXQDQ+1aptoDg6agFQzIR8lQdhZWXZkXDsARgP9vF87YRHAWSw2pEl+AtgtGZR79qMbKTCax0oqxKbsiXAYdKEhvi4UZ229apbT62eZrSnHbTIuL4ezng==";
+	// the second line is for seed=0 uncomment next line, if BloomHashFactory.properties contains real values
 	expected = "A+EhxVXyQgcIAs+GseI0z5+DvhyGYFLOTe8MDVM3Hh4mYyZVO35TgSQ59bXE66BzZVBYdCgx6/hJ5eBDNOpSIWeX5I8oVsNis3D2nazmogjbIV6Ukq5rNpZNXz/124dEaYQBvxLNntJGCNmGLZ3+py1cW20M8lKu47nT1owVlxQE5zdE+IrHn/gbTjzG+GZtf9arPeuqD8cyURvXW2WWuA8rRt93B/v042m9FWCZuwf2Ygh3R5J08ykpA1mUL4/tk6ZCwcZk3do0wCFgShi8XAF2Wj58EuNRiT3NS7/JFmI4oEtf1Xq4SAm61COAsK73Qd+JO5laU/gsxg==";
 	assertTrue(actual.length() == 336);
 	assertEquals(expected, actual);
@@ -54,5 +56,12 @@ public class BloomHashTestHGW {
 	assertEquals(expected, actual);
     }
 
+    @Test
+    void test() {
+    	IBloomHash bloomHash = BloomHashFactory.getDefault();
+    	String actual = bloomHash.createBase64Result("hier", "eintragen", 'f', 1995, 12, 21);
+    	System.out.println("bloom is");
+		System.out.println(actual);
+    }
 
 }
