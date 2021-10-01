@@ -184,6 +184,43 @@ public class BloomHash implements IBloomHash {
 	return localDate.format(formatter);
     }
 
+    String getRegex(String voc) {
+	if (voc.contains("-")) {
+	    voc = voc.replace("-", "") + "-";
+	}
+	return "[^" + voc + "]+";
+    }
+
+    /** @return the removeFirstName */
+    Set<String> getRemoveFirstName() {
+	return removeFirstName;
+    }
+
+    /** @return the removeLastName */
+    Set<String> getRemoveLastName() {
+	return removeLastName;
+    }
+
+    /** @return the transFirstName */
+    Map<String, String> getTransFirstName() {
+	return transFirstName;
+    }
+
+    /** @return the transLastName */
+    Map<String, String> getTransLastName() {
+	return transLastName;
+    }
+
+    /** @return the vocFirstName */
+    String getVocFirstName() {
+	return vocFirstName;
+    }
+
+    /** @return the vocLastName */
+    String getVocLastName() {
+	return vocLastName;
+    }
+
     void initLookupTable(long seedFirstName, long seedLastName, long seedBirthdate, long seedGender,
 	    String vocFirstName, String vocLastName, String vocBirthdate, String vocGender) {
 	firstNameTable = createTable(seedFirstName, vocFirstName);
@@ -220,7 +257,7 @@ public class BloomHash implements IBloomHash {
 	if (toUpper) {
 	    ret = ret.toUpperCase();
 	}
-	// FIXME: remove not voc
+	ret = ret.replaceAll(getRegex(voc), "");
 	LOGGER.debug("'" + s + "' -> '" + ret + "'");
 	return ret;
     }
