@@ -101,10 +101,12 @@ public class BloomHash implements IBloomHash {
 	BitSetFixedSize bs = new BitSetFixedSize(1000);
 
 	firstName = normalize(true, firstName, vocFirstName, removeFirstName, transFirstName);
+		firstName = trim(firstName);
 	firstName = padding(firstName);
 	bs.or(randomHash(firstName, firstNameTable));
 
 	lastName = normalize(true, lastName, vocLastName, removeLastName, transLastName);
+		lastName = trim(lastName);
 	lastName = padding(lastName);
 	bs.or(randomHash(lastName, lastNameTable));
 
@@ -121,6 +123,13 @@ public class BloomHash implements IBloomHash {
 	Encoder encoder = Base64.getEncoder();
 	return encoder.encodeToString(permutedBloomFilter.toByteArray());
     }
+
+	String trim(String s) {
+		String ret = s.replaceAll("^\\s+", "");
+		ret = ret.replaceAll("\\s+$", "");
+		LOGGER.trace("trim from '" + s + "' to '" + ret + "'.");
+		return ret;
+	}
 
     public String createBase64Result(String firstName, String lastName, char gender, String birthday) {
 	int birthYear;
