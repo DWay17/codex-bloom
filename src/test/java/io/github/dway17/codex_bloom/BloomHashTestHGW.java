@@ -27,6 +27,28 @@ public class BloomHashTestHGW {
 	System.out.println(" <code value=\"" + actual + "\"/>"); // xml
     }
 
+	@Test
+	void testMALMSW() {
+		IBloomHash bloomHash = BloomHashFactory.getDefault();
+		String firstName = "Dr. rer. medic. Maria-Anna Lena";
+		String lastName = "v. Meier-Schmitt Weber";
+		char gender = 'f';
+		int birthYear = 1995;
+		int birthMonth = 12;
+		int birthDay = 13;
+		String actual = bloomHash.createBase64Result(firstName, lastName, gender, birthYear, birthMonth, birthDay);
+		System.out.println("bloom is for " + firstName + " " + lastName + ", " + gender + ", " + birthDay + "."
+				+ birthMonth + "." + birthYear + ": ");
+		System.out.println(actual);
+		System.out.println("\"value\": \"" + actual + "\""); // json
+		System.out.println(" <code value=\"" + actual + "\"/>"); // xml
+		String expected;
+		expected = "+EY+lZRv9ntPkty5oiQGqlfUR2xMjtyfj/CeBntvbdYA/7RsmNfchDBsTLa6ZGzxnqdWgXf1krMEfVr8+p5umI9BqFHbVUSnBbgL4C0nC7fhk/Q1Wg13qFY7xUYJmQeOz4HGjH7xMF1mpPMO7ShtCegMHiy1wkFIiP25H8LcSZ6svdAKJop2ht1yOW3m1GsFXFwdW3ihvAthLKs346uPDHrXRYNqVG+t41xqXZySwwARWTiDpTB4q7UZoZ8RI1c365PvJIENIcmymkP7Yl0ZYgD+R+OaMkB6r0bikZjbVVuYQK4rNV0n28nacpJzY3GJzx9ELQeLH8OEWg==";
+		expected = "eL8jXWU2ayfCrUWHxN71209EdNvGqj5nZs2Mj11mVIpq6lFVseZYSyYr/XFpoYjX9fAJOBjKfihA/flbE8aWcs8WJn549qFkcRDIbeLN0llJIA+QgLi2PtinRmH++6ZEBYWa/TgdQhi++N2BmLhr5CdNOyWMdhUwhmtZF46mFQehz8PWvcgsDbMuXF80GucZ2dEa2Of7jtMjQH3hTXFcMrY8E3Q9vr6uykzhNQLJGhva+EbkR4O2YkvYDSmtKIhwurQ16GrUDlLmNTBnfUeWefHxE0otq755QGN2SBpx1myANSL1uCKhoEzQW4iXop++0fzJk5N1uKi8Ww==";
+		assertTrue(actual.length() == 336);
+		assertEquals(expected, actual);
+	}
+
     @Test
     void testEM() {
 	IBloomHash bloomHash = BloomHashFactory.getDefault();
