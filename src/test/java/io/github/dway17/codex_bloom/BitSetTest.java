@@ -12,95 +12,95 @@ import org.junit.jupiter.api.Test;
 
 class BitSetTest {
 
-    @BeforeAll
-    static void setUpBeforeClass() throws Exception {
-    }
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
+	}
 
-    @AfterAll
-    static void tearDownAfterClass() throws Exception {
-    }
+	@AfterAll
+	static void tearDownAfterClass() throws Exception {
+	}
 
-    BitSetFixedSize bs;
+	BitSetFixedSize bs;
 
-    @BeforeEach
-    void setUp() throws Exception {
-	bs = new BitSetFixedSize(5);
-    }
+	@BeforeEach
+	void setUp() throws Exception {
+		bs = new BitSetFixedSize(5);
+	}
 
-    @AfterEach
-    void tearDown() throws Exception {
-    }
+	@AfterEach
+	void tearDown() throws Exception {
+	}
 
-    @Test
-    void testBitSetFixedSize() {
+	@Test
+	void testBitSetFixedSize() {
 
-    }
+	}
 
-    @Test
-    void testBitSetFixedSizeInt() {
+	@Test
+	void testBitSetFixedSizeInt() {
 
-    }
+	}
 
-    @Test
-    void testClearInt() {
+	@Test
+	void testClearInt() {
 
-    }
+	}
 
-    @Test
-    void testClearIntInt() {
+	@Test
+	void testClearIntInt() {
 
-    }
+	}
 
-    @Test
-    void testFixedSize() {
-	assertEquals(5, bs.fixedSize());
-    }
+	@Test
+	void testFixedSize() {
+		assertEquals(5, bs.fixedSize());
+	}
 
-    @Test
-    void testFlipInt() {
-	assertThrows(IndexOutOfBoundsException.class, () -> bs.flip(5));
-    }
+	@Test
+	void testFlipInt() {
+		assertThrows(IndexOutOfBoundsException.class, () -> bs.flip(5));
+	}
 
-    @Test
-    void testFlipIntInt() {
+	@Test
+	void testFlipIntInt() {
 
-    }
+	}
 
-    @Test
-    void testGetInt() {
-	bs.get(4);
-    }
+	@Test
+	void testGetInt() {
+		bs.get(4);
+	}
 
-    @Test
-    // (expected = IndexOutOfBoundsException.class)
-    void testGetIntEx() {
-	assertThrows(IndexOutOfBoundsException.class, () -> bs.get(5));
-    }
+	@Test
+	// (expected = IndexOutOfBoundsException.class)
+	void testGetIntEx() {
+		assertThrows(IndexOutOfBoundsException.class, () -> bs.get(5));
+	}
 
-    @Test
-    void testGetIntInt() {
+	@Test
+	void testGetIntInt() {
 
-    }
+	}
 
-    @Test
-    void testSetInt() {
-	assertThrows(IndexOutOfBoundsException.class, () -> bs.set(5));
-    }
+	@Test
+	void testSetInt() {
+		assertThrows(IndexOutOfBoundsException.class, () -> bs.set(5));
+	}
 
-    @Test
-    void testSetIntBoolean() {
+	@Test
+	void testSetIntBoolean() {
 
-    }
+	}
 
-    @Test
-    void testSetIntInt() {
+	@Test
+	void testSetIntInt() {
 
-    }
+	}
 
-    @Test
-    void testSetIntIntBoolean() {
+	@Test
+	void testSetIntIntBoolean() {
 
-    }
+	}
 
 
 }
