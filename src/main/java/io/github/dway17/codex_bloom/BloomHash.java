@@ -15,6 +15,10 @@ import org.slf4j.LoggerFactory;
 
 public class BloomHash implements IBloomHash {
 
+	enum ChangeCase {
+		UNCHANGED, UPPER, LOWER
+	}
+
     private final static Logger LOGGER = LoggerFactory.getLogger(BloomHash.class);
 
     private LinkedHashMap<String, BitSetFixedSize> firstNameTable;
