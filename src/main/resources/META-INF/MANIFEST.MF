@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: io.github.dway17.codex_bloom.BloomHashMain
+Class-Path: .
