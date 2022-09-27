@@ -140,6 +140,28 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>io.github.dway17.codex_bloom.BloomHashMain</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<!-- mvn assembly:assembly -DdescriptorId=jar-with-dependencies -->
+			<plugin>
+				<!-- <groupId>org.apache.maven.plugins</groupId> -->
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>io.github.dway17.codex_bloom.BloomHashMain</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
